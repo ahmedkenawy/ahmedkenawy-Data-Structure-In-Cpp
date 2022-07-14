@@ -55,7 +55,7 @@ public:
         }
     }
 
-    int getFront
+    int getFront()
     {
         return front->data;
     }
