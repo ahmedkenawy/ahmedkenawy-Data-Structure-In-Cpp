@@ -43,16 +43,56 @@ public:
 
     void insert(int item)
     {
-        root=insert(root, item);
+        root = insert(root, item);
     }
 
-    void preOrder(Node *r)
+    void preOrderTraverse(Node *r)
     {
         if (r == NULL)
             return;
         cout << r->data << "  ";
         preOrder(r->left);
         preOrder(r->right);
+    }
+
+    void inOrderTraverse(Node *r)
+    {
+        if (r == NULL)
+            return;
+        preOrder(r->left);
+        cout << r->data << "  ";
+        preOrder(r->right);
+    }
+
+    void postOrderTraverse(Node *r)
+    {
+        if (r == NULL)
+            return;
+        preOrder(r->left);
+        preOrder(r->right);
+        cout << r->data << "  ";
+    }
+
+    Node *search(Node *r, int key)
+    {
+        if (r == NULL)
+            return;
+        else if (r->data == key)
+            return r;
+        else if (kew < r->data)
+            search(r->left, key);
+        else
+            search(r->right, key);
+    }
+
+    bool search(int key)
+    {
+        Node *result = search(root, key);
+
+        if (result == NULL)
+            return false;
+        else
+            return true;
     }
 };
 
