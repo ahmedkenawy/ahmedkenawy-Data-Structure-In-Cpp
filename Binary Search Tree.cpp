@@ -76,7 +76,7 @@ public:
     Node *search(Node *r, int key)
     {
         if (r == NULL)
-            return;
+            return NULL;
         else if (r->data == key)
             return r;
         else if (kew < r->data)
@@ -93,6 +93,30 @@ public:
             return false;
         else
             return true;
+    }
+
+    Node *findMinimum(Node *r)
+    {
+        if (r == NULL)
+            return NULL;
+        else if (r->left == NULL)
+            return r;
+        else
+            findMinimum(r->left);
+    }
+
+    Node *findMaximum(Node *r)
+    {
+        if (r == NULL)
+            return NULL;
+        else if (r->right == NULL)
+            return r;
+        else
+            findMaximum(r->right);
+    }
+
+    Node *Delete(Node *r,int key){
+        
     }
 };
 
