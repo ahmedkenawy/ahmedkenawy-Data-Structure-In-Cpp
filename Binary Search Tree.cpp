@@ -115,8 +115,41 @@ public:
             findMaximum(r->right);
     }
 
-    Node *Delete(Node *r,int key){
-        
+    Node *Delete(Node *r, int key)
+    {
+        if (r == NULL)
+            return NULL;
+        if (key < r->data)
+        {
+            r->left = Delete(r->left, key);
+        }
+        else if (key > r->data)
+        {
+            r->right = Delete(r->right, key);
+        }
+        else
+        {
+            if (r->left == NULL && r->right == NULL)
+            {
+                r = NULL;
+            }
+            else if (r->left != NULL && r->right == NULL)
+            {
+                r->data = r->left->data;
+                delete r->left;
+                r->left = NULL;
+            }
+            else if (r->left == NULL && r->right != NULL)
+            {
+                r->data = r->right->data;
+                delete r->right;
+                r->right = NULL;
+            }else{
+                Node *max=findMaximum(r);
+                r->data=max->data;
+                r->left=Delete(r->left,max->data);
+            }
+        }
     }
 };
 
